@@ -6,6 +6,10 @@ I used the latest version of the rc-2.0.0 branch from Docker and my output is ru
 
 <img width="847" alt="Screen Shot 2022-10-06 at 9 54 47 PM" src="https://user-images.githubusercontent.com/65196174/194450058-fb633f7a-1ea0-4688-abbf-9844783db568.png">
 
+Location of switch-cache in p4app:
+
+<img width="197" alt="Screen Shot 2022-10-06 at 9 56 54 PM" src="https://user-images.githubusercontent.com/65196174/194450225-b09eefe2-6e40-4a32-8f9a-2aa0b1294787.png">
+
 # In-Network Cache
 
 In this assignment you will implement a cache for a simple key-value service.

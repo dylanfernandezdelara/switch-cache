@@ -210,6 +210,7 @@ control MyIngress(inout headers hdr,
                 }
             }
         }
+        // if the is_valid field is 0 (this is set in server.py) then you shouldn't write to the register
         else if (hdr.response.isValid() && hdr.response.is_valid == 1) {
             myReg.write((bit<32>)hdr.response.key, hdr.response.value);
         }

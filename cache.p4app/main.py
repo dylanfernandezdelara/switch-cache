@@ -4,15 +4,38 @@ import sys
 import time
 
 topo = SingleSwitchTopo(2)
+N = 2 # should equal the number of hosts in the topology
 net = P4Mininet(program='cache.p4', topo=topo)
 net.start()
 
 s1, h1, h2 = net.get('s1'), net.get('h1'), net.get('h2')
 
 # TODO Populate IPv4 forwarding table
+table_entries = []
+for i in range(1, N + 1):
+    table_entries.append(dict(
+        table_name='MyIngress.ipv4_lpm',
+        match_fields={'hdr.ipv4.dstAddr': ["10.0.0.%d" % i, 32]},
+        action_name='MyIngress.ipv4_forward',
+        action_params={'dstAddr': net.get('h%d'%i).intfs[0].MAC(), 'port': i}
+        ))
+
+for table_entry in table_entries:
+    s1.insertTableEntry(table_entry)
 
 # TODO Populate the cache table
+cache_table_entries = []
+static_key_value_pairs = [(3, 33)] # option to statically add key-value pairs to the cache
+for i in range(len(static_key_value_pairs)):
+    cache_table_entries.append(dict(
+        table_name='MyIngress.p4_cache',
+        match_fields={'hdr.request.key': static_key_value_pairs[i][0]},
+        action_name='MyIngress.in_p4_cache_send_msg',
+        action_params={'response_value': static_key_value_pairs[i][1]}
+        ))
 
+for table_entry in cache_table_entries:
+    s1.insertTableEntry(table_entry)
 
 # Now, we can test that everything works
 

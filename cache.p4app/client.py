@@ -17,13 +17,17 @@ addr = (host, UDP_PORT)
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.settimeout(2)
 
+# packs key
 req = reqHdr.pack(key)
 s.sendto(req, addr)
 
+# receives response from server
 res, addr2 = s.recvfrom(1024)
 
+# unpacks the server response
 key2, valid, value = resHdr.unpack(res)
 
+# checks to see if the server response is valid and equal to the original key
 assert key2 == key
 
 if valid:

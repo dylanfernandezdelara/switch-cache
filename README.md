@@ -1,3 +1,9 @@
+To run the script, './p4app run switch-cache/cache.p4app', the switch-cache folder should be in the p4app directory (the same directory that the examples folder should be in). 
+
+The version of Python used is 2.7.18, which was obtained by typing 'python' in the terminal.
+
+I used the latest version of the rc-2.0.0 branch from Docker and my output is running as intended. After the running the script command, the server only prints out the request for the first '1' since the second request is written into the register and doesn't reach the server. It also prints a request for 2 since that is in neither the p4 cache table nor the register, along with printing a request for 123 which is not found in the server. 
+
 # In-Network Cache
 
 In this assignment you will implement a cache for a simple key-value service.

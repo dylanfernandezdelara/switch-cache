@@ -4,6 +4,8 @@ The version of Python used is 2.7.18, which was obtained by typing 'python' in t
 
 I used the latest version of the rc-2.0.0 branch from Docker and my output is running as intended. After the running the script command, the server only prints out the request for the first '1' since the second request is written into the register and doesn't reach the server. It also prints a request for 2 since that is in neither the p4 cache table nor the register, along with printing a request for 123 which is not found in the server. 
 
+<img width="847" alt="Screen Shot 2022-10-06 at 9 54 47 PM" src="https://user-images.githubusercontent.com/65196174/194450058-fb633f7a-1ea0-4688-abbf-9844783db568.png">
+
 # In-Network Cache
 
 In this assignment you will implement a cache for a simple key-value service.
